@@ -1,0 +1,29 @@
+// 
+// 
+// Author: Jian Chen
+// May 25 2014
+// 
+This directory contains code for testing stereo at NIST
+The code should run on a Linux platform. 
+
+----------------
+   To compile:
+      make all
+  
+----------------
+   To run: 
+     (1) ./stereoTest 
+         will display a sphere and a box in stereo
+
+     (2) ./stereoTest -stereo -f ./data/test.data
+         will display a brain model and a box in stereo
+ 
+     keyboard functions:
+           x/y/z: rotate around the x,y,z in the object coordinates
+           -/=:   zoom out / in
+           esc / q: quit
+           c:  print the screen (will save to a ppm image)
+     
+----------------
+   To clean up:
+     make cleanall

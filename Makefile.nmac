@@ -1,0 +1,40 @@
+#!make
+# -----------------------------------------------------------------------
+#
+#
+CC = /usr/bin/g++ -DOPENGL -g 
+
+INC = -I/usr/include -I/usr/X11R6/include  -I/usr/local/include 
+
+LLIBSDIR =  -L/usr/local/lib -L/usr/X11R6/lib  -L/System/Library/Frameworks/OpenGL.framework/Libraries
+LLIBSLIB= -framework GLUT -framework OpenGL -framework Cocoa 
+
+
+# ----------------------------------------------------------------------
+# the files for cjSveWidget library 
+#  ---------------------------------------------------------------------
+SOURCES = contrastTesting.cpp
+TARGET = contrastTesting
+
+# ----------------------------------------------------------------------
+# Put all the source together 
+#  ---------------------------------------------------------------------
+OBJECTS	= $(SOURCES:.cpp=.o)
+
+# ----------------------------------------------------------------------
+#  now build the  library
+#  ---------------------------------------------------------------------
+all: $(TARGET)
+
+%.o : %.cpp
+	$(CC) -c $< -o $@ $(INC) $(CFLAGS)
+#$(CC) $(INC) $(CFLAGS) -c $<
+
+contrastTesting: contrastTesting.o
+	$(CC) $(LLIBSDIR) contrastTesting.o $(LLIBSLIB) -o $@
+
+# ----------------------------------------------------------------------
+#  now clean up
+#  ---------------------------------------------------------------------
+clean:
+	rm -f $(TARGET) *.o *~ core
